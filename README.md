@@ -1,5 +1,7 @@
 # davidpena-web
 
+**En vivo:** https://davidpena-web.pages.dev
+
 Página personal de David Peña. HTML + CSS puro, **sin build step**: lo que está en el repo es exactamente lo que se sirve.
 
 Este repo es además el material de la clase **"Sube tu web a Cloudflare Pages"**.
