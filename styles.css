@@ -1,30 +1,44 @@
 /* ---------------------------------------------------------------
    David Peña — hoja de estilos
    Todo en un solo archivo, sin frameworks ni build step.
+
+   Paleta: verde de marca de ComunidadFeliz.
+   Regla del design system: #4CBF8C se usa como RELLENO (botones,
+   bordes, acentos). Para TEXTO en verde sobre blanco el único valor
+   accesible en WCAG es #00A27F — por eso hay dos tokens distintos.
    --------------------------------------------------------------- */
 
 :root {
-  --bg:        #fbfaf7;
-  --bg-alt:    #f2efe8;
-  --ink:       #1b1a17;
-  --ink-soft:  #56534c;
-  --line:      #e2ded3;
-  --accent:    #b4531f;
-  --card:      #ffffff;
-  --shadow:    0 1px 2px rgba(27,26,23,.05), 0 8px 24px rgba(27,26,23,.05);
-  --maxw:      44rem;
+  --bg:           #fafafa;
+  --bg-alt:       #f4f4f4;
+  --ink:          #232942;
+  --ink-soft:     #4c516d;
+  --line:         #cccccc;
+
+  --accent:       #4cbf8c;  /* relleno: botones, bordes, subrayados */
+  --accent-text:  #00a27f;  /* texto verde accesible sobre claro */
+  --accent-hover: #50d6a5;
+  --on-accent:    #fafafa;  /* texto sobre relleno verde */
+
+  --card:         #ffffff;
+  --shadow:       0 1px 2px rgba(35,41,66,.06), 0 8px 24px rgba(35,41,66,.06);
+  --maxw:         44rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:       #14130f;
-    --bg-alt:   #1c1a15;
-    --ink:      #f2efe8;
-    --ink-soft: #a9a49a;
-    --line:     #2e2b24;
-    --accent:   #f0925a;
-    --card:     #1c1a15;
-    --shadow:   0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    --bg:          #1d1d28;
+    --bg-alt:      #272733;
+    --ink:         #fafafa;
+    --ink-soft:    #a9acb9;
+    --line:        #3e3e51;
+
+    /* sobre fondo oscuro el verde claro es el que rinde en contraste */
+    --accent:      #4cbf8c;
+    --accent-text: #50d6a5;
+
+    --card:        #272733;
+    --shadow:      0 1px 2px rgba(0,0,28,.4), 0 8px 24px rgba(0,0,28,.3);
   }
 }
 
@@ -48,7 +62,7 @@ body {
 }
 .skip:focus {
   left: 1rem; top: 1rem;
-  background: var(--accent); color: #fff;
+  background: var(--accent); color: var(--on-accent);
   padding: .5rem 1rem; border-radius: 6px; z-index: 10;
 }
 
@@ -82,7 +96,7 @@ body {
   font-size: .9rem;
   white-space: nowrap;
 }
-.topbar nav a:hover { color: var(--accent); }
+.topbar nav a:hover { color: var(--accent-text); }
 
 /* --- Hero --- */
 .hero {
@@ -96,7 +110,7 @@ body {
   font-size: .82rem;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 h1 {
@@ -127,14 +141,18 @@ h1 {
   text-decoration: none;
   font-size: .95rem;
   font-weight: 500;
-  transition: transform .15s ease, border-color .15s ease;
+  transition: transform .15s ease, border-color .15s ease, background-color .15s ease;
 }
 .btn:hover { transform: translateY(-1px); border-color: var(--accent); }
 
 .btn-primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
 /* --- Bloques --- */
@@ -180,7 +198,7 @@ h2 {
   font-variant-numeric: tabular-nums;
   font-size: .85rem;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-text);
   padding-top: .25rem;
 }
 
@@ -197,6 +215,7 @@ h2 {
 .card {
   background: var(--card);
   border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
   border-radius: 14px;
   padding: 1.25rem;
   box-shadow: var(--shadow);
@@ -213,7 +232,7 @@ h2 {
   padding-bottom: 2px;
   font-weight: 500;
 }
-.links a:hover { color: var(--accent); }
+.links a:hover { color: var(--accent-text); }
 
 /* --- Pie --- */
 footer {
