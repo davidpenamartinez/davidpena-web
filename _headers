@@ -1,0 +1,11 @@
+# Cabeceras que aplica Cloudflare Pages a las respuestas.
+# Este archivo NO se sirve al visitante: Pages lo lee al desplegar.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+/styles.css
+  Cache-Control: public, max-age=3600

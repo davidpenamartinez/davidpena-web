@@ -1,0 +1,229 @@
+/* ---------------------------------------------------------------
+   David Peña — hoja de estilos
+   Todo en un solo archivo, sin frameworks ni build step.
+   --------------------------------------------------------------- */
+
+:root {
+  --bg:        #fbfaf7;
+  --bg-alt:    #f2efe8;
+  --ink:       #1b1a17;
+  --ink-soft:  #56534c;
+  --line:      #e2ded3;
+  --accent:    #b4531f;
+  --card:      #ffffff;
+  --shadow:    0 1px 2px rgba(27,26,23,.05), 0 8px 24px rgba(27,26,23,.05);
+  --maxw:      44rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:       #14130f;
+    --bg-alt:   #1c1a15;
+    --ink:      #f2efe8;
+    --ink-soft: #a9a49a;
+    --line:     #2e2b24;
+    --accent:   #f0925a;
+    --card:     #1c1a15;
+    --shadow:   0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  left: 1rem; top: 1rem;
+  background: var(--accent); color: #fff;
+  padding: .5rem 1rem; border-radius: 6px; z-index: 10;
+}
+
+/* --- Barra superior --- */
+.topbar {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+  padding: .9rem clamp(1rem, 5vw, 3rem);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: .02em;
+}
+
+.topbar nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(.75rem, 3vw, 1.6rem);
+}
+
+.topbar nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-size: .9rem;
+  white-space: nowrap;
+}
+.topbar nav a:hover { color: var(--accent); }
+
+/* --- Hero --- */
+.hero {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(3.5rem, 12vw, 7rem) clamp(1.25rem, 5vw, 2rem) clamp(2rem, 6vw, 3.5rem);
+}
+
+.eyebrow {
+  margin: 0 0 .75rem;
+  font-size: .82rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(2.75rem, 11vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  margin: 0 0 1.25rem;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 2.6vw, 1.2rem);
+  color: var(--ink-soft);
+  margin: 0 0 2rem;
+  max-width: 34rem;
+}
+.lede strong { color: var(--ink); font-weight: 600; }
+
+.cta { display: flex; flex-wrap: wrap; gap: .75rem; }
+
+.btn {
+  display: inline-block;
+  padding: .65rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: .95rem;
+  font-weight: 500;
+  transition: transform .15s ease, border-color .15s ease;
+}
+.btn:hover { transform: translateY(-1px); border-color: var(--accent); }
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* --- Bloques --- */
+.block {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 8vw, 4rem) clamp(1.25rem, 5vw, 2rem);
+  border-top: 1px solid var(--line);
+}
+
+.block-light {
+  background: var(--bg-alt);
+  max-width: none;
+  border-top: 1px solid var(--line);
+}
+.block-light > * { max-width: var(--maxw); margin-inline: auto; }
+
+h2 {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  font-size: clamp(1.6rem, 5vw, 2rem);
+  letter-spacing: -.01em;
+  margin: 0 0 1.5rem;
+}
+
+.prose p { margin: 0 0 1.1rem; color: var(--ink-soft); }
+.prose p:last-child { margin-bottom: 0; }
+.prose em { color: var(--ink); font-style: italic; }
+
+/* --- Línea de tiempo --- */
+.timeline { list-style: none; margin: 0; padding: 0; }
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1.25rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.timeline li:last-child { border-bottom: 0; }
+
+.year {
+  font-variant-numeric: tabular-nums;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--accent);
+  padding-top: .25rem;
+}
+
+.timeline h3 { margin: 0 0 .3rem; font-size: 1rem; font-weight: 600; }
+.timeline p  { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+
+/* --- Tarjetas de ideas --- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+.card h3 { margin: 0 0 .5rem; font-size: 1rem; font-weight: 600; }
+.card p  { margin: 0; color: var(--ink-soft); font-size: .93rem; }
+
+/* --- Contacto --- */
+.links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.5rem; }
+.links a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+  font-weight: 500;
+}
+.links a:hover { color: var(--accent); }
+
+/* --- Pie --- */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 2rem clamp(1.25rem, 5vw, 2rem);
+  text-align: center;
+}
+footer p { margin: 0; color: var(--ink-soft); font-size: .85rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
