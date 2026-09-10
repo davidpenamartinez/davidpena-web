@@ -7,5 +7,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
 
+# El CSS se revalida en cada visita: así un push se ve al recargar,
+# sin tener que hacer hard-refresh. Clave para editar en vivo.
 /styles.css
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=0, must-revalidate
