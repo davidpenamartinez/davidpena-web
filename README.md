@@ -16,6 +16,7 @@ Este repo es además el material de la clase **"Sube tu web a Cloudflare Pages"*
 | `styles.css`  | Todos los estilos. Sin frameworks, con modo oscuro automático. |
 | `404.html`    | Página de error. Cloudflare Pages la usa sola si existe con ese nombre. |
 | `_headers`    | Cabeceras HTTP que aplica Cloudflare al desplegar (seguridad y caché). No se sirve al visitante. |
+| `img/`        | Foto (WebP + JPEG de respaldo) y favicon SVG. |
 | `.gitignore`  | Lo que git debe ignorar. |
 
 ---
