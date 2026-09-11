@@ -191,17 +191,33 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Aparición suave al hacer scroll. Si el sistema pide menos movimiento,
-  // no se activa y todo queda visible desde el principio.
+  // Aparición suave al hacer scroll.
+  // El contenido solo se esconde si el efecto puede correr de verdad: sin JS,
+  // o si el sistema pide menos movimiento, nunca se agrega .anim y todo se ve.
   var menosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   if (!menosMovimiento && 'IntersectionObserver' in window) {
+    var secciones = document.querySelectorAll('.reveal');
+    var mostrarTodo = function () {
+      secciones.forEach(function (el) { el.classList.add('visible'); });
+    };
+
     document.documentElement.classList.add('anim');
+
+    var observerVivo = false;
     var obs = new IntersectionObserver(function (entradas) {
+      observerVivo = true;
       entradas.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
       });
     }, { rootMargin: '0px 0px -10% 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+
+    secciones.forEach(function (el) { obs.observe(el); });
+
+    // Red de seguridad: el observer siempre dispara al menos una vez al
+    // empezar a observar. Si a los 2 segundos no lo hizo (pestaña congelada,
+    // navegador raro), mostramos todo antes que dejar la página en blanco.
+    setTimeout(function () { if (!observerVivo) mostrarTodo(); }, 2000);
   }
 </script>
 
