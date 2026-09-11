@@ -11,12 +11,14 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="David Peña — CEO & co-fundador de ComunidadFeliz">
 <meta property="og:description" content="De tocar puertas en Providencia a 10 países. SaaS, proptech e IA.">
+<meta property="og:image" content="https://davidpena-web.pages.dev/img/david-adn.jpg">
 <meta property="og:locale" content="es_CL">
+<meta name="twitter:card" content="summary_large_image">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👋</text></svg>">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -24,7 +26,7 @@
 <a class="skip" href="#contenido">Saltar al contenido</a>
 
 <header class="topbar">
-  <span class="brand">DP</span>
+  <a class="brand" href="#contenido">DP</a>
   <nav>
     <a href="#historia">Historia</a>
     <a href="#hitos">Hitos</a>
@@ -36,6 +38,7 @@
 <main id="contenido">
 
   <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
     <p class="eyebrow">Osorno → Santiago → 10 países</p>
     <h1>David Peña</h1>
     <p class="lede">
@@ -44,13 +47,20 @@
       Providencia a los 24. Hoy somos el software de administración de
       condominios más usado de Latinoamérica.
     </p>
+
+    <dl class="stats">
+      <div><dt>Fundada</dt><dd>2015</dd></div>
+      <div><dt>Países</dt><dd>10</dd></div>
+      <div><dt>ARR</dt><dd>USD 12M</dd></div>
+    </dl>
+
     <div class="cta">
       <a class="btn btn-primary" href="#contacto">Hablemos</a>
       <a class="btn" href="https://comunidadfeliz.cl" target="_blank" rel="noopener">ComunidadFeliz ↗</a>
     </div>
   </section>
 
-  <section id="historia" class="block">
+  <section id="historia" class="block reveal">
     <h2>Un poco de historia</h2>
     <div class="prose">
       <p>
@@ -67,18 +77,17 @@
         incipiente, y le pagué $500.000 de mi bolsillo para entrar. No tenía
         idea si iba a resultar. Chuta, resultó.
       </p>
-      <p>
-        En diciembre de 2016 un cliente, Diego Acevedo, me mandó un pan de
-        pascua con una carta: <em>"la Navidad de mi familia es mejor gracias a
-        lo que ustedes crearon"</em>. Ahí supe que esto iba en serio. Y ahí me
-        enamoré del cliente para siempre.
-      </p>
+      <blockquote>
+        En diciembre de 2016 un cliente me mandó un pan de pascua con una carta:
+        <em>“la Navidad de mi familia es mejor gracias a lo que ustedes crearon”</em>.
+        Ahí me enamoré del cliente para siempre.
+      </blockquote>
     </div>
   </section>
 
-  <section id="hitos" class="block">
+  <section id="hitos" class="block reveal">
     <h2>Algunos hitos</h2>
-    <ul class="timeline">
+    <ol class="timeline">
       <li>
         <span class="year">2015</span>
         <div>
@@ -114,10 +123,24 @@
           <p>Automatización de prospección, agentes conversacionales y herramientas internas. High tempo testing: tira 10 cosas, 8 fracasan, 2 te cambian la empresa.</p>
         </div>
       </li>
-    </ul>
+    </ol>
   </section>
 
-  <section id="ideas" class="block">
+  <section class="block block-wide reveal">
+    <figure class="foto">
+      <picture>
+        <source srcset="img/david-adn.webp" type="image/webp">
+        <img src="img/david-adn.jpg" width="1400" height="1050" loading="lazy" decoding="async"
+             alt="David Peña junto a otras tres personas en el estudio de la radio ADN 91.7.">
+      </picture>
+      <figcaption>
+        En los estudios de <strong>ADN 91.7</strong>. La selfie es mía, así que
+        el encuadre también.
+      </figcaption>
+    </figure>
+  </section>
+
+  <section id="ideas" class="block reveal">
     <h2>En lo que creo</h2>
     <div class="cards">
       <article class="card">
@@ -139,7 +162,7 @@
     </div>
   </section>
 
-  <section class="block block-light">
+  <section class="block block-light reveal">
     <h2>Fuera de la pega</h2>
     <p class="prose">
       Tenis tres o cuatro veces por semana (le gané un tiebreak a un ATP 800,
@@ -149,7 +172,7 @@
     </p>
   </section>
 
-  <section id="contacto" class="block">
+  <section id="contacto" class="block reveal">
     <h2>Hablemos</h2>
     <p class="prose">Si estás construyendo algo o quieres conversar de SaaS, IA o proptech, escríbeme.</p>
     <div class="links">
@@ -167,6 +190,19 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Aparición suave al hacer scroll. Si el sistema pide menos movimiento,
+  // no se activa y todo queda visible desde el principio.
+  var menosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!menosMovimiento && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('anim');
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+  }
 </script>
 
 </body>

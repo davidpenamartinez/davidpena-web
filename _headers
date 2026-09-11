@@ -11,3 +11,7 @@
 # sin tener que hacer hard-refresh. Clave para editar en vivo.
 /styles.css
   Cache-Control: public, max-age=0, must-revalidate
+
+# Las imágenes casi no cambian: se cachean un día.
+/img/*
+  Cache-Control: public, max-age=86400
